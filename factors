@@ -1,0 +1,73 @@
+#!/usr/bin/python3
+
+import math
+
+def factorize(number, factors):
+    for factor in factors:
+        if number % factor == 0:
+            other_factor = number // factor
+            return factor, other_factor
+    return None, None
+
+def main(input_file, factors_file):
+    # Read factors from the provided file
+    with open(factors_file, 'r') as factors_input:
+        factors = [int(line.strip()) for line in factors_input]
+
+    # Process numbers from the input file
+    with open(input_file, 'r') as input_numbers:
+        for line in input_numbers:
+            number = int(line.strip())
+            if number <= 1:
+                print(f"Cannot factorize {number} into two smaller factors")
+            else:
+                factor1, factor2 = factorize(number, factors)
+                if factor1 and factor2:
+                    print(f"{number} = {factor1} * {factor2}")
+                else:
+                    print(f"Cannot factorize {number} into two smaller factors using the provided factors")
+
+
+def is_prime(n):
+    if n <= 1:
+        return False
+    if n <= 3:
+        return True
+    if n % 2 == 0 or n % 3 == 0:
+        return False
+    i = 5
+    while i * i <= n:
+        if n % i == 0 or n % (i + 2) == 0:
+            return False
+        i += 6
+    return True
+
+def factorize(number, factors):
+    for factor in factors:
+        if number % factor == 0:
+            other_factor = number // factor
+            return factor, other_factor
+    return None, None
+
+def main(input_file, factors_file):
+    # Read factors from the provided file
+    with open(factors_file, 'r') as factors_input:
+        factors = [int(line.strip()) for line in factors_input]
+
+    # Process numbers from the input file
+    with open(input_file, 'r') as input_numbers:
+        for line in input_numbers:
+            number = int(line.strip())
+            if number <= 1:
+                print(f"{number}={number}*1")
+            else:
+                factor1, factor2 = factorize(number, factors)
+                if factor1 and factor2:
+                    print(f"{number}={factor1}*{factor2}")
+                else:
+                    print(f"Cannot factorize {number} using the provided factors")
+
+if __name__ == "__main__":
+    input_file = "<file>"  # Replace with your input file name
+    factors_file = "factors.txt"  # Replace with the name of your factors file
+    main(input_file, factors_file)
